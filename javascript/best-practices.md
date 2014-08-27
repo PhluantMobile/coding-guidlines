@@ -1,8 +1,8 @@
-# Pragmatic Standards: JavaScript Coding Standards and Best Practices
+# Pragmatic Standards: JS/CSS/HTML Coding Standards and Best Practices
 
 ## Introduction:
 
-This is a coding standards and best practices guide for JavaScript.
+This is a coding standards and best practices guide.
 This document focuses on __pragmatism, not perfection__, and is community-driven, so please feel free to contribute!
 
 ## TL;DR:
