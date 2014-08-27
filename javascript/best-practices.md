@@ -22,7 +22,6 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 - Write semantic HTML (use the correct HTML elements for your purposes)
 - Never include inline javscript in your HTML
 - Give meaningful ids & class names
-- 
 
 ### CSS
 - Group properties by purpose (eg. for positioning, coloring, etc.)
