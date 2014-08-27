@@ -24,7 +24,9 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 - Give meaningful ids & class names that describe the content, not the look
 
 ### CSS
+- Give heirarchy / structure to your css files
 - Group properties by purpose (eg. for positioning, coloring, etc.)
+- Group related rules closer together
 
 ### Style
 - Indentation / Whitespacing: 
