@@ -51,7 +51,7 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 - Strive to define / use variables & functions in the most specific context possible
 - Give intuitive / descriptive names to everything
 - Use "git pull --rebase" when pulling down code
-- Leave comments often, but only when they're
+- Leave comments often, but only when they're appropriate
 
 - Never make edits that are vital to the ads operation in Dojo without updating the git repo as well
 - Test in-app ads with a proxy or remote debugging library before marking ad as complete
