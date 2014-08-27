@@ -8,6 +8,47 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 
 Although this guide is primarily centered around front-end JavaScript, most of the practices here are equally applicable to back-end JavaScript in node.js.
 
+## TL;DR:
+
+### JavaScript
+- Your code must pass http://www.jshint.com/
+- Never use eval()
+- Always use the strict equality operator (===) unless testing for truthiness / falsiness
+- Never exceed 5 levels of indentation / nesting
+- Never exceed 15 lines of code per function
+- Never exceed 100 characters per line of code
+- Never declare global variables except the 'phluant' object (used as namespace)
+- Always declare variables closest to the context in which they're used
+- Always reference global variables through the window object (eg. window.alert()) 
+
+### HTML
+- Write semantic HTML (use the correct HTML elements for your purposes)
+- Never include inline javscript in your HTML
+- Give meaningful ids & class names
+- 
+
+### CSS
+- Group properties by purpose (eg. for positioning, coloring, etc.)
+
+### Style
+- Indentation / Whitespacing: 
+    - 1 tab per nesting
+    - a keyword followed by ( (left parenthesis) should be separated by a space
+    - opening braces should exist on the same line as the code block's header, separated by a single space
+    - closing brackets should vertically align with the beginning of the code block's header
+- Always omit braces when possible
+- Quotations: use ' for js / css, and " in HTML
+- Word Seperations: use hyphens for html / css, and camelcase for js
+- Always reduce code statements to 1 line if it does not exceed 100 characters
+- Never omit semicolons
+
+### General Practices
+- Try to make the program's /flow/ as obvious as possible
+- Strive to define / use variables & functions in the most specific context possible
+- Give intuitive / descriptive names to everything
+- Use "git pull --rebase" when pulling down code
+- Leave Comments often
+
 ## If You're A JavaScript Noob, Read These:
 
 ### [JavaScript: The Good Parts, by Douglas Crockford][good-parts]
@@ -135,7 +176,7 @@ Note that _relying_ on the above can sometimes be a bad "code smell," because it
 
 ### Inlining the crap out of functions and object literals.
 
-At no point in your javascript files should you exceed 5 levels of nested code (including base level). Use variables and function definitions to achieve a flatter code structure and greater 
+At no point in your javascript files should you exceed 5 levels of nested code (including base level). Use variables and function definitions to achieve a flatter code structure and a clearer program flow. 
 
 ```js
 var name = 'Steve Kwan';
