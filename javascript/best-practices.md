@@ -39,11 +39,11 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 - Never omit semicolons
 
 ### General Practices
-- Try to make the program's /flow/ as obvious as possible
+- Try to make the program's flow as obvious as possible
 - Strive to define / use variables & functions in the most specific context possible
 - Give intuitive / descriptive names to everything
 - Use "git pull --rebase" when pulling down code
-- Leave Comments often
+- Leave comments often, but only when they're
 
 ## If You're A JavaScript Noob, Read These:
 
