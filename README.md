@@ -5,6 +5,11 @@
 This is a coding standards and best practices guide.
 This document focuses on __pragmatism, not perfection__, and is community-driven, so please feel free to contribute!
 
+### Inspired By:
+- http://javascript.crockford.com/code.html
+- https://github.com/stevekwan/best-practices/blob/master/javascript/best-practices.md
+- http://contribute.jquery.org/style-guide/js/
+
 ## TL;DR
 
 ### JavaScript
