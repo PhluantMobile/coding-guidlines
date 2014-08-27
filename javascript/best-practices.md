@@ -68,7 +68,7 @@ MyNamespace.MyModule = function()
 
 For a more in-depth example of namespacing, see this [Module Pattern example][module-pattern-experiment].
 
-### Always anonymously scope JavaScript if you’re not never going to call it elsewhere (eg. in other files).
+### Always anonymously scope JavaScript if you’re not going to call it elsewhere.
 If you're writing a one-off chunk of JavaScript that never needs to be referred to by other code, it's wise to anonymously scope it so it won't get accidentally referenced elsewhere. This is especially true for code that would otherwise execute in global context.
 
 To do this, just wrap your code in an anonymous function closure:
