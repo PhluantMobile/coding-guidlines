@@ -2,33 +2,11 @@
 
 ## Introduction:
 
-This is a coding standards and best practices guide for JavaScript, and to a lesser extent, jQuery.
+This is a coding standards and best practices guide for JavaScript.
 
-This document focuses on __pragmatism, not perfection__.  It does not focus on writing perfect code, but rather, code that will strike the best balance of __value for your time__.
-
-In particular, we are focused on writing JavaScript that:
-
-* does what it's supposed to do
-* is easily understood
-* is easily maintained.
-
-Anything above and beyond this is considered a nice-to-have, and is not the focus of this document.
-
-This attitude may not be appropriate for open-source projects, but it is definitely appropriate for projects where cost and schedule are key factors.
-
-This is a community-driven document, so please feel free to contribute!
+This document focuses on __pragmatism, not perfection__, and is community-driven, so please feel free to contribute!
 
 Although this guide is primarily centered around front-end JavaScript, most of the practices here are equally applicable to back-end JavaScript in node.js.
-
-Note that I use [Allman indentation style][allman] in this document, despite the fact that a large portion of the JavaScript community frowns upon it (and for reasons I don't completely disagree with).  However, I find this indention style to be much clearer and more readable than the alternatives.  I like its gestalt.  But please don't take my use of this indentation style as a suggestion that _all_ JavaScript should be written using Allman style.
-
-Author:  
-Steve Kwan  
-<mail@stevekwan.com>  
-<http://www.stevekwan.com/>
-
-Originally from my GitHub:  
-<https://github.com/stevekwan/best-practices/>
 
 ## If You're A JavaScript Noob, Read These:
 
@@ -59,21 +37,6 @@ Currying and partial function application are important, but advanced, concepts 
 If you _really_ want to understand constructor vs prototype, here's an in-depth example.
 
 ## Best Practices We Follow:
-Please submit a pull request if you have any suggestions to the best practices below!
-
-### Ensure your site still works without JavaScript.
-This is progressive enhancement, a cornerstone of modern web development.  JavaScript should be used to decorate your site with additional functionality, and should not be required for your site to be operational.
-
-If JavaScript is required to get your site to function, that's bad for accessibility and SEO.
-
-The most obvious place where this problem manifests is `<a>` links that require JavaScript.  For example, don't do the following:
-
-```html
-<a href="#">There's a JavaScript click handler somewhere else...</a>
-<a href="javascript:someJavaScriptFunctionInThisLink()">...</a>
-```
-
-If you have a link that absolutely _must_ require JavaScript to function, don't include that link in your DOM.  Instead, add that link dynamically through JavaScript.  That way, users without JavaScript will not see it at all.
 
 ### Use the Module Pattern to encapsulate.
 The Module Pattern uses functions and closures to provide encapsulation in functional languages like JavaScript.
@@ -105,22 +68,19 @@ MyNamespace.MyModule = function()
 
 For a more in-depth example of namespacing, see this [Module Pattern example][module-pattern-experiment].
 
-### Anonymously scope JavaScript if you’re never going to call it elsewhere.
-If you're writing a one-off chunk of JavaScript that never needs to be referred to by other code, it's wise to anonymously scope it so it won't get accidentally referenced elsewhere.
+### Always anonymously scope JavaScript if you’re not never going to call it elsewhere (eg. in other files).
+If you're writing a one-off chunk of JavaScript that never needs to be referred to by other code, it's wise to anonymously scope it so it won't get accidentally referenced elsewhere. This is especially true for code that would otherwise execute in global context.
 
 To do this, just wrap your code in an anonymous function closure:
 
 ```js
-// An anonymous function that can never be referenced by name...
-(function(){
-    var x = 123;
-    console.log(x);
-})(); // Call the anonymous function once, then throw it away!
+(function(){ // An anonymous function that can never be referenced by name...
 
+var x = 123; // local variable that won't conflict with any global variables
 console.log(x);
+    
+})(); // Call the anonymous function once, then throw it away!
 ```
-
-In the code above, the first `console.log()` will succeed, but the second will fail.  You won't be able to reference `x` outside of the anonymous function.
 
 ### When optimizating, focus on the big things.
 Some things cause a big dip in performance, such as:
@@ -130,8 +90,6 @@ Some things cause a big dip in performance, such as:
 * Lots of HTTP requests (and even this is becoming less important).
 
 These are problems you should address.  Fixing them could result in less page stuttering.
-
-However, there are a lot of other "problems" that have very little impact on page performance.  Yes, you may be able to shave off a few milliseconds by optimizing your selectors or caching function results, but is it worth the effort?
 
 If your optimizations are making your code uglier (and thus more difficult to maintain), ask yourself: are these "optimizations" worth it?  For most webpages, 1ms isn't going to make or break the user experience.  There are probably better uses of your time.
 
@@ -157,10 +115,6 @@ var init = function()
 
 There's one problem, though: if `init()` ever gets called more than once, that link is going to wind up with `handleClick()` bound to it twice.  And that means it'll execute twice if the link is clicked.
 
-It's important to note that when you use jQuery event handlers, _they stack_.  Two `click()` calls on the same element will result in two function calls when the link is clicked.
-
-In some cases, you can flat-out guarantee that your link handler won't get bound twice.  In the above example, perhaps you know for certain that `init()` is only called a single time, and therefore two click handlers will never appear on your link.  However, sometimes you can't be so sure, and in those instances it's better safe than sorry.
-
 A good defensive coding practice is to unbind an event handler before binding, like so:
 
 ```js
@@ -171,30 +125,17 @@ var handleClick = function()
 
 var init = function()
 {
-    $("a.some-link").unbind(handleClick).click(handleClick);
+    $("a.some-link").off(handleClick).click(handleClick);
 };
 ```
 
-In the above example, if `handleClick()` has already been bound to your link, it will be removed before it is rebound, thus ensuring it is only ever bound once.
-
-Note that _relying_ on the above can sometimes be a bad "code smell," because it is often an indication that you don't truly understand how your code is working.  After all, if you really understand what's going on, you should be able to prevent your event handlers from queuing up.
-
-However, in the real world this can be a valuable defensive coding practice to prevent your users from encountering a broken site.
-
-It's probably a good idea to create a helper function that does the `unbind()`/`bind()` automatically, and logs an error if the code tries to double-bind.
+Note that _relying_ on the above can sometimes be a bad "code smell," because it is often an indication that you don't truly understand how your code is working.  After all, if you really understand what's going on, you should be able to prevent init from being called twice.
 
 ## Bad Practices We Avoid:
-Please submit a pull request if you have any suggestions to the bad practices below!
-
-### Treating JavaScript like a classical OOP language.
-Developers often come into JavaScript expecting it to behave like classical OOP languages.  And this is totally understandable, because JavaScript's syntax would put you under that impression.
-
-But JavaScript is absolutely _not_ a classically object-oriented language.  It's very different from Java, C++, C#, or PHP.  It's function-driven, and the way you program in JavaScript requires a bit of a mental paradigm shift.
-
-For starters, read [The Good Parts, by Douglas Crockford][good-parts].  Yes, this is not the first time you've read that recommendation in this document, but it's worth the read.  Crockford does an excellent job of explaining how JavaScript may not work the way you expect.
 
 ### Inlining the crap out of functions and object literals.
-I don't know about you, but I find nested code like this to be really hard to follow:
+
+At no point in your javascript files should you exceed 5 levels of nested code (including base level). Use variables and function definitions to achieve a flatter code structure and greater 
 
 ```js
 var name = 'Steve Kwan';
@@ -248,12 +189,6 @@ This kind of code is problematic because:
 
 * It causes major readability and maintainability issues
 * It prevents you from reusing some of those nested functions
-* It prevents you from using the `unbind()`/`bind()` trick mentioned above.
-
-### Excessive optimization.
-Performant JavaScript is important.  But it's also important to identify if your improvements are providing noticeable benefit.  In some cases, your "improvements" may actually make performance worse!
-
-There are some optimizations that are _always_ worth doing, such as those listed in the best practices section above.  But some just aren't worth it.  If you are obsessing over optimizations to the point where you are talking about shaving off a millisecond or two, and the consequence to your optimizations is hard-to-maintain code, you need to rethink whether you are improving things or making them worse.
 
 ### Causing excessive document reflows.
 DOM modification is slow, because in addition to rebuilding the DOM tree, the browser must recalculate all element dimensions and see how they fit together.  This is _especially_ a problem when your elements are positioned via `static` (the default) or `relative` - and this is almost always the case.
@@ -301,22 +236,6 @@ $('body').append(table);
 
 window.alert("Done!");
 ```
-
-### Going overboard with file concatenation.
-If you aren't automatically concatenating your JavaScript, you should be.  Combining all your JavaScript into fewer files results in fewer HTTP requests.  This is good for performance, not just for JavaScript, but for CSS as well.
-
-But concatenating everything into one big, compressed file is not always a good idea.  It's possible to go too far into this direction to the point where you're actually _hurting_ performance in the long term.
-
-Let's say, for example, that you crunch all your site's JavaScript into a single file.  That way it only needs to be downloaded once.  In the long term, this could be beneficial...but in the short term, your visitors will suffer a _dramatically increased load time_ on their first visit, because instead of loading one page's resources, they're loading a whole _site's_.
-
-So let's take it in the other direction: rather than having one big JavaScript file, we'll make a separate (but single) JavaScript file for each page.  That sounds great on paper, but there's a problem: it _doesn't make use of the browser's built-in caching abilities_.
-
-If a lot of your JavaScript is common across your entire site, you want the visitor's browser to cache that JavaScript rather than request it again.  However, if you've crunched all that "common" stuff into individual page bundles, the browser can no longer do this.
-
-The best solution is usually a compromise.  A good way to serve up cached JavaScript is to break things into two files:
-
-1. A "common" file containing JavaScript that is used everywhere
-2. A page-specific file containing JavaScript only used on the page requested.
 
 ### Really long function chains.
 Function chaining like this can be really handy:
