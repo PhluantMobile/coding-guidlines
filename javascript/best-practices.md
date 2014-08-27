@@ -39,6 +39,7 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 - Never omit semicolons
 
 ### General Practices
+- Always maintain separation between content, presentation, & behavior
 - Try to make the program's flow as obvious as possible
 - Strive to define / use variables & functions in the most specific context possible
 - Give intuitive / descriptive names to everything
