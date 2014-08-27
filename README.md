@@ -53,6 +53,9 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 - Use "git pull --rebase" when pulling down code
 - Leave comments often, but only when they're
 
+- Never make edits that are vital to the ads operation in Dojo without updating the git repo as well
+- Test in-app ads with a proxy or remote debugging library before marking ad as complete
+
 ## If You're A JavaScript Noob, Read These:
 
 ### [JavaScript: The Good Parts, by Douglas Crockford][good-parts]
