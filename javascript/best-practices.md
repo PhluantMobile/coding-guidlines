@@ -3,10 +3,7 @@
 ## Introduction:
 
 This is a coding standards and best practices guide for JavaScript.
-
 This document focuses on __pragmatism, not perfection__, and is community-driven, so please feel free to contribute!
-
-Although this guide is primarily centered around front-end JavaScript, most of the practices here are equally applicable to back-end JavaScript in node.js.
 
 ## TL;DR:
 
