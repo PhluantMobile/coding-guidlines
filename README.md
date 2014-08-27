@@ -1,11 +1,11 @@
 # Pragmatic Standards: JS/CSS/HTML Coding Standards and Best Practices
 
-## Introduction:
+## Introduction
 
 This is a coding standards and best practices guide.
 This document focuses on __pragmatism, not perfection__, and is community-driven, so please feel free to contribute!
 
-## TL;DR:
+## TL;DR
 
 ### JavaScript
 - Your code must pass http://www.jshint.com/
@@ -21,7 +21,7 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 ### HTML
 - Write semantic HTML (use the correct HTML elements for your purposes)
 - Never include inline javscript in your HTML
-- Give meaningful ids & class names
+- Give meaningful ids & class names that describe the content, not the look
 
 ### CSS
 - Group properties by purpose (eg. for positioning, coloring, etc.)
