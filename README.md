@@ -19,7 +19,7 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 - Never exceed 5 levels of indentation / nesting
 - Never exceed 15 lines of code per function
 - Never exceed 100 characters per line of code
-- Never declare global variables except the 'phluant' object (used as namespace)
+- Never declare global variables. Use the 'phluant' object as a namespace instead
 - Always declare variables closest to the context in which they're used
 - Always reference global variables through the window object (eg. window.alert()) 
 
