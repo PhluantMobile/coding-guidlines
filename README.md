@@ -1,4 +1,4 @@
-# Pragmatic Standards: JS/CSS/HTML Coding Standards and Best Practices
+# JS/CSS/HTML Coding Standards and Best Practices
 
 ## Introduction
 
