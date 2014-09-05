@@ -15,6 +15,7 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 ### JavaScript
 - Your code must pass http://www.jshint.com/
 - Never use eval()
+- Prefix boolean variables appropriately using is, has, etc. (eg. isDone, hasPassesd, etc.)
 - Always use the strict equality operator (===) unless testing for truthiness / falsiness
 - Never exceed 5 levels of indentation / nesting
 - Never exceed 15 lines of code per function
