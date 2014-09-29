@@ -1,4 +1,4 @@
-# JS/CSS/HTML Coding Standards and Best Practices
+# JS/CSS/HTML Coding Standards
 
 ## Introduction
 
@@ -47,6 +47,8 @@ This document focuses on __pragmatism, not perfection__, and is community-driven
 - Never omit semicolons
 
 ### General Practices
+- Track all interactions
+- Make sure ads are centered when placed in an empty HTML body without taking them out of 'normal flow' (they should still cause the parent element to expand)
 - Always maintain separation between content, presentation, & behavior
 - Try to make the program's flow as obvious as possible
 - Strive to define / use variables & functions in the most specific context possible
